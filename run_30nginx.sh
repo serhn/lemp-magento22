@@ -8,5 +8,6 @@ docker run -it -d \
 	-e TZ="$TZ" \
         -v ${PROJECT_DIR}:/usr/share/nginx \
         -v ${PWD}/inc/nginx.conf:/etc/nginx/conf.d/default.conf \
+        -v ${PWD}/inc/nginx.conf.inc:/etc/nginx/nginx.conf.inc \
         -v ${PWD}/log/nginx:/var/log/nginx \
 	-p 80:80 $IMAGE

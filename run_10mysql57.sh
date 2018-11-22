@@ -2,13 +2,17 @@
 . inc/init.sh
 MYSQL_LOCAL_DIR="$PWD/mysql57"
 IMAGE="mysql:5.7.24"
-MYSQL_PORT="3306"
-MYSQL_ROOT_PASSWORD="sei0ohqu0Eghoo2aiPheiYu5ooveeSo9"
+DB_PORT="3306"
+DB_ROOT_PASSWORD="sei0ohqu0Eghoo2aiPheiYu5ooveeSo9"
+DB_DATABASE="magento"
 if [ ! -d $MYSQL_LOCAL_DIR  ]
 then
     #echo -n "Enter mysql ROOT PASSWORD: "
     #read MYSQL_ROOT_PASSWORD
-    docker run -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD -d --name="$CONTAINER" $IMAGE
+    docker run \
+        -e MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD \
+        -e MYSQL_DATABASE=$DB_DATABASE \
+        -d --name="$CONTAINER" $IMAGE
     docker exec  $CONTAINER sh -c "apt-get update && apt-get install -y procps"
     #docker exec -it mysql bash
     COUNT="0"
@@ -25,8 +29,10 @@ then
     docker cp -a $CONTAINER:/var/log/mysql ${MYSQL_LOCAL_DIR}/log
     docker cp -a $CONTAINER:/etc/mysql ${MYSQL_LOCAL_DIR}/etc
     echo "$IMAGE" > ${MYSQL_LOCAL_DIR}/README.txt
-    docker stop mysql
-    docker rm  mysql
+    docker stop $CONTAINER
+    docker rm  $CONTAINER
+    echo "${BLUE}USER:root${NC}"
+    echo "${BLUE}PASSWORD:${DB_ROOT_PASSWORD}${NC}"
 fi
 docker run -d \
     --restart unless-stopped  \
@@ -35,6 +41,6 @@ docker run -d \
      -v ${MYSQL_LOCAL_DIR}/log:/var/log/mysql  \
      -v ${MYSQL_LOCAL_DIR}/etc:/etc/mysql  \
      -e TZ=Europe/Kiev \
-     -p ${MYSQL_PORT}:3306  \
+     -p ${DB_PORT}:3306  \
         ${IMAGE}
-
+echo "${BLUE}DB:${DB_DATABASE}${NC}"
