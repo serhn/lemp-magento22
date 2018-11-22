@@ -1,0 +1,7 @@
+#cron file
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+#40 7 * * * /usr/share/nginx/readAll.sh  2>&1
+#40 8 15 11 * /usr/share/nginx/readAll.sh > /usr/share/nginx/tmp/crontest 
+#0 2 * * * /usr/share/nginx/readAll.sh > /usr/share/nginx/tmp/crontest 
+#40 7 * * * /usr/share/nginx/tmp/test.sh > /usr/share/nginx/tmp/crontest 

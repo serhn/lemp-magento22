@@ -1,0 +1,14 @@
+nginx
+ignore_container
+mysql*
+/postgres105
+/postgres105_back
+tmp
+*.swp
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
