@@ -1,4 +1,5 @@
 #!/bin/sh
+CONTAINER="mysql_mag"
 . inc/init.sh
 MYSQL_LOCAL_DIR="$PWD/mysql57"
 IMAGE="mysql:5.7.24"
@@ -34,6 +35,7 @@ then
     echo "${BLUE}USER:root${NC}"
     echo "${BLUE}PASSWORD:${DB_ROOT_PASSWORD}${NC}"
 fi
+# -p ${DB_PORT}:3306  \
 docker run -d \
     --restart unless-stopped  \
     --name=$CONTAINER   \
@@ -41,6 +43,5 @@ docker run -d \
      -v ${MYSQL_LOCAL_DIR}/log:/var/log/mysql  \
      -v ${MYSQL_LOCAL_DIR}/etc:/etc/mysql  \
      -e TZ=Europe/Kiev \
-     -p ${DB_PORT}:3306  \
         ${IMAGE}
 echo "${BLUE}DB:${DB_DATABASE}${NC}"
