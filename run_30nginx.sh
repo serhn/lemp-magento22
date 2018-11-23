@@ -11,4 +11,4 @@ docker run -it -d \
         -v ${PWD}/inc/nginx.conf:/etc/nginx/conf.d/default.conf \
         -v ${PWD}/inc/nginx.inc.conf:/etc/nginx/nginx.inc.conf \
         -v ${PWD}/log/nginx:/var/log/nginx \
-	-p 81:80 $IMAGE
+	-p 80:80 $IMAGE
