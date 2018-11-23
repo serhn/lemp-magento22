@@ -18,7 +18,13 @@ fi
 if [ ! -f "inc/.env" ]
 then
 cp inc/.env.default inc/.env
-DB_PASS=$(date +%s | sha256sum | base64 | head -c 32 );
+DB_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1);
+ADMIN_PASS=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1);
 sed -i "s/^DB_PASS=.*/DB_PASS=${DB_PASS}/" inc/.env
+sed -i "s/^ADMIN_PASS=.*/ADMIN_PASS=${ADMIN_PASS}/" inc/.env
+fi
+if [ ! -f "inc/php.ini" ]
+then
+cp inc/php.ini-production inc/php.ini
 fi
 . inc/.env
