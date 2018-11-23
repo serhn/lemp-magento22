@@ -7,8 +7,8 @@ docker run -it -d \
 	--link php_mag \
 	--name="$CONTAINER" \
 	-e TZ="$TZ" \
-        -v ${PROJECT_DIR}:/usr/share/nginx \
+        -v ${PWD}/mag:/usr/share/nginx \
         -v ${PWD}/inc/nginx.conf:/etc/nginx/conf.d/default.conf \
-        -v ${PWD}/inc/nginx.conf.inc:/etc/nginx/nginx.conf.inc \
+        -v ${PWD}/inc/nginx.inc.conf:/etc/nginx/nginx.inc.conf \
         -v ${PWD}/log/nginx:/var/log/nginx \
 	-p 81:80 $IMAGE

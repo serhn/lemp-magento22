@@ -7,7 +7,7 @@ docker run  -d \
             --name="$CONTAINER" \
 	    -e TZ="$TZ" \
             --link mysql_mag:db \
-            -v ${PROJECT_DIR}:/usr/share/nginx \
+            -v ${PWD}/mag:/usr/share/nginx \
 	    -v ${PWD}/inc/crontab:/etc/cron.d/crontab \
             -v ${PWD}/inc/php.ini:/usr/local/etc/php/php.ini \
             $IMAGE
