@@ -2,6 +2,7 @@
 
 ```sh
 git clone https://github.com/serhn/lemp-magento22.git
+cd lemp-magento
 ```
 
 cd lemp-magento
@@ -24,3 +25,5 @@ install magento
 ```sh
 ./tools/install_magento.sh
 ```
+
+http://localhost:81
