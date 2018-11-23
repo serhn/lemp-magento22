@@ -11,8 +11,8 @@ then
     #echo -n "Enter mysql ROOT PASSWORD: "
     #read MYSQL_ROOT_PASSWORD
     docker run \
-        -e MYSQL_ROOT_PASSWORD=$DB_ROOT_PASSWORD \
-        -e MYSQL_DATABASE=$DB_DATABASE \
+        -e MYSQL_ROOT_PASSWORD=$DB_PASS \
+        -e MYSQL_DATABASE=$DB_BASE \
         -d --name="$CONTAINER" $IMAGE
     docker exec  $CONTAINER sh -c "apt-get update && apt-get install -y procps"
     #docker exec -it mysql bash
@@ -32,8 +32,8 @@ then
     echo "$IMAGE" > ${MYSQL_LOCAL_DIR}/README.txt
     docker stop $CONTAINER
     docker rm  $CONTAINER
-    echo "${BLUE}USER:root${NC}"
-    echo "${BLUE}PASSWORD:${DB_ROOT_PASSWORD}${NC}"
+    echo "${BLUE}USER:${DB_USER}${NC}"
+    echo "${BLUE}PASSWORD:${DB_PASS}${NC}"
 fi
 # -p ${DB_PORT}:3306  \
 docker run -d \
@@ -42,6 +42,6 @@ docker run -d \
      -v ${MYSQL_LOCAL_DIR}/db:/var/lib/mysql  \
      -v ${MYSQL_LOCAL_DIR}/log:/var/log/mysql  \
      -v ${MYSQL_LOCAL_DIR}/etc:/etc/mysql  \
-     -e TZ=Europe/Kiev \
+     -e TZ=${TZ} \
         ${IMAGE}
 echo "${BLUE}DB:${DB_DATABASE}${NC}"
