@@ -2,7 +2,7 @@
 CONTAINER=$1
 if [ -z $CONTAINER ]
 then
-   CONTAINER="php71"
+   CONTAINER="php_mag"
    echo "EMPTY container set default $CONTAINER" >&2
    #exit;
 fi
