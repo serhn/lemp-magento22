@@ -24,4 +24,11 @@ install magento
 ./tools/install_magento.sh
 ```
 
+restart php nginx
+
+```sh
+./run_28php71.sh
+./run_30nginx.sh
+```
+
 http://localhost:81
