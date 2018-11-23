@@ -2,15 +2,13 @@
 
 ```sh
 git clone https://github.com/serhn/lemp-magento22.git
-cd lemp-magento
+cd lemp-magento22
 ```
-
-cd lemp-magento
 
 start MYSQL PHP71 NGINX
 
 ```sh
-./tools/restart_all.sh
+./restart_all.sh
 ```
 edit inc/.env
 
