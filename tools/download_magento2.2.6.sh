@@ -4,3 +4,6 @@ tar zxvf mag.tar.gz
 rm mag.tar.gz
 rm -rf mag 
 mv magento2-2.2.6 mag
+chmod -R 777 mag/var
+chmod -R 777 mag/generated
+
